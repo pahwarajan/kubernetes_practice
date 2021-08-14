@@ -25,7 +25,6 @@ spec:
   accessModes:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain  
-  #retain means data will be retain if pod deleted and rececle means data will be deleted#
   storageClassName: slow
   mountOptions:
     - hard
@@ -33,10 +32,9 @@ spec:
   nfs:
     path: /data
     server: 172.17.0.2 
- #IP of nfs server
   claimRef:
-    name: gpv
-    namespace: gpvc  
+    name: gvc
+    namespace: grras  
 
 ---
 
@@ -83,6 +81,3 @@ spec:
         volumeMounts:
            - name: myvol
              mountPath: /usr/share/nginx/html/
-            
-            ##kubectl get pv
-            ##kubectl get pod,pvc -n grras -o wide
